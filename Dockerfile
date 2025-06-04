@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY . .
 
-EXPOSE 3000
-
+# 安装需要的依赖，使用apk而不是apt
 RUN apk update && \
     apk add --no-cache bash && \
-    npm install
+    chmod +x index.js && \
+    npm install 
+
+EXPOSE 3000
 
 CMD ["node", "index.js"]
